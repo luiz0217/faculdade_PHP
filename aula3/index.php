@@ -272,7 +272,7 @@ $gt->emitirSom();
 
 
 ?>
-<br>
+<br><br>
 5)
 <?php
 // Crie duas traits, 'LogErro' e 'LogInfo', ambas com um método 'registrarLog'.
