@@ -23,16 +23,17 @@ Route::get('/sobre-nos', [SobreNosController::class,'sobreNos'])->name('sobre');
 
 Route::get('/contato', [ContatoController::class,'contato'])->name('contato');
 
-Route::get('/login', function(){return 'Login';})->name('login')->middleware('log.route.visits');
-
-Route::prefix('/app')->group(function() {
+Route::prefix('/app')->middleware(['check.login.route'])->group(function() {
     Route::get('/clientes', function(){return 'Clientes';})->name('app.clientes');
     Route::get('/fornecedores', [FornecedorController::class,'index'])->name('app.fornecedores');
     Route::get('/produtos', function(){return 'produtos';})->name('app.produtos');
 });
 
+Route::get('/login', function(){return 'Login';})->name('login');
+
+
 //Route::get('/teste/{p1}/{p2}', 'TesteController@teste')->name('site.teste');
 
 Route::fallback(function() {
-    echo 'A rota acessada não existe. <a href="'.route('site.index').'">clique aqui</a> para ir para página inicial';
+    echo 'A rota acessada não existe. <a href="'.route('index').'">clique aqui</a> para ir para página inicial';
 });
